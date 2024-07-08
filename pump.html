@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pump</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input, button{
+            font-size: 18px;
+        }
+        body{
+            background: silver;
+            position: relative;
+        }
+        .bfp-control{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 4px solid aliceblue;
+        }
+        .bfp-text{
+            width: 100%;
+            height: 40px;
+            text-align: left;
+            background-color: seagreen;
+            color: aliceblue;
+            text-transform: uppercase;
+            padding: 10px;
+            border-bottom: 4px solid aliceblue;
+        }
+        .cont{
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 30px;
+            height: 120px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .bfp-group{
+            width: 100%;
+            background: red;
+            color: aliceblue;
+            height: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 8px;
+            font-size: 12px;
+        }
+        .no-disc{
+            width: 45%;
+            background: red;
+            color: aliceblue;
+            height: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 8px;
+            font-size: 10px;
+            margin: 0 5px 5px 0;
+        }
+        .ready{
+            width: 45%;
+            background: red;
+            color: aliceblue;
+            height: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 8px;
+            font-size: 10px;
+            margin: 0 0 5px 5px;
+        }
+        .cont select{
+            width: 100%;
+            background: red;
+            color: aliceblue;
+            height: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 8px;
+            font-size: 12px;
+        }
+        .status-table{
+            width: 320px;
+            height: 250px;
+            margin-left: 30px;
+            margin-top: 50px;
+            border: 4px groove darkgray;
+            background: rgb(128, 128, 128);
+        }
+        .status-table table{
+            line-height: 2;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin: 0 auto;
+        }
+        table input{
+            width: 120px;
+            margin-left: 20px;
+            background: forestgreen;
+        }
+        .buttons{
+            display: flex;
+            margin: 0 auto;
+            width: 80%;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+        .buttons button{
+            width: 100px;
+            height: 40px;
+            text-transform: uppercase;
+        }
+        .cont1{
+            position: relative;
+            width: 900px;
+            height: 500px;
+            top: 80px;
+        }
+        .tri-text{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            position: absolute;
+            top: 220px;
+            left: 20px;
+        }
+        .triangle1{
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+        }
+        .arrows{
+            width: 100px;
+            height: 500px;
+            display: inline-block;
+            position: absolute;
+            top: 90px;
+            left: 170px;
+        }
+        .img_1{
+            width: 300px;
+            height: 80px;
+            transform: rotate(-90deg);
+        }
+        .img_2{
+            width: 300px;
+            height: 80px;
+            transform: rotate(90deg);
+            margin-top: 120px;
+        }
+        .line{
+            height: 5px;
+            width: 600px;
+            background: red;
+            position: absolute;
+            top: 20px;
+            left: 323px;
+        }
+        .line2{
+            height: 5px;
+            width: 600px;
+            background: red;
+            position: absolute;
+            bottom: 50px;
+            left: 323px;
+        }
+        .field1{
+            position: absolute;
+            top: -50px;
+            width: 200px;
+            height: 300px;
+            left: 400px;
+            font-weight: 700;
+        }
+        .field1 input, .field2 input{
+            width: 90px;
+            direction: rtl;
+            font-weight: 800;
+        }
+        .gr_sqr{
+            width: 70px;
+            height: 50px;
+            background: darkgray;
+            margin-top: 5px;
+            border: 2px solid black;
+            margin-left: 10px;
+        }
+        .field2{
+            position: absolute;
+            bottom: 10px;
+            width: 200px;
+            height: 115px;
+            left: 400px;
+            font-weight: 700;
+        }
+        .ipt_row{
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            top: -140px;
+            left: 600px;
+            line-height: 25px;
+            font-weight: 700;
+        }
+        .ipt_row input, .ipt_row2 input, .ipt_row3 input, .ipt_row4 input{
+            width: 90px;
+            font-weight: 800;
+            text-align: right;
+        }
+        .ipt_row button, .ipt_row2 input[type="button"]{
+            background-color: darkgray;
+            width: 90px;
+            font-weight: 800;
+        }
+        .ipt_row2{
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            bottom: 70px;
+            left: 600px;
+            line-height: 25px;
+            font-weight: 700;
+        }
+        .nasos1{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 800px;
+            bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .nasos-img{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.7);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .nasos1 span{
+            margin-left: -20px;
+        }
+        .nasos2{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 800px;
+            top: -30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .nasos2 span{
+            margin-left: -20px;
+        }
+        .single-ipt{
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            left: 720px;
+            top: 200px;
+            font-weight: 700;
+        }
+        .single-ipt input{
+            width: 90px;
+            font-weight: 800;
+            direction: rtl;
+            margin-top: 5px;
+        }
+        .cont2{
+            width: 600px;
+            height: 1000px;
+            position: absolute;
+            top: 0;
+            left: 880px;
+           
+            z-index: 2;
+        }
+        .tri-text2{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            position: absolute;
+            top: 40px;
+            left: -240px;
+        }
+        .triangle2{
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+        }
+        .tri-text3{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            top: 150px;
+            left: -240px;
+        }
+        .triangle3{
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-180deg);
+        }
+        .line3{
+            height: 5px;
+            width: 550px;
+            background: red;
+            position: absolute;
+            top: 64px;
+            left: -10px;
+        }
+        .line4{
+            height: 5px;
+            width: 550px;
+            background: red;
+            position: absolute;
+            top: 174px;
+            left: -10px;
+        }
+        .buttons2{
+            position: absolute;
+            top: 240px;
+            right: 10px;
+            width: 200px;
+            height: 150px;
+            font-weight: 700;
+        }
+        .buttons2 button{
+            width: 70px;
+            height: 30px;
+            text-transform: uppercase;
+        }
+        .buttons2 input{
+            width: 90px;
+            font-weight: 800;
+            direction: rtl;
+            margin-top: 5px;
+        }
+        .arrows2{
+            width: 600px;
+            height: 100px;
+            display: inline-block;
+            position: absolute;
+            top: 350px;
+            left: -30px;
+        }
+        .img_3{
+            width: 400px;
+            height: 80px;
+            position: absolute;
+            right: 0;
+        }
+        .img_4{
+            width: 400px;
+            height: 80px;
+            position: absolute;
+            left: -20;
+        }
+        .klapan1{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 250px;
+            top: 0px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan1 span{
+            margin-left: -20px;
+        }
+        .klapan1 .klapan-ipt{
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .square{
+            width: 250px;
+            height: 120px;
+            border: 4px solid red;
+            position: absolute;
+            top: 390px;
+            left: 130px;
+        }
+        .klapan2{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 220px;
+            top: 470px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img2{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan2 span{
+            margin-left: -20px;
+        }
+        .klapan2 .klapan-ipt2 {
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt2 input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .single-ipt2{
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            top: 350px;
+            left: -150px;
+            font-weight: 700;
+        }
+        .single-ipt2 input{
+            width: 90px;
+            font-weight: 800;
+            direction: rtl;
+            margin-top: 5px;
+        }
+        .col-line{
+            width: 5px;
+            height: 700px;
+            background: red;
+            position: absolute;
+            top: 64px;
+            right: 60px;
+        }
+        .img_5{
+            width: 300px;
+            height: 80px;
+            transform: rotate(-90deg);
+            position: absolute;
+            left: -120px;
+            top: 460px;
+        }
+        .line5{
+            height: 5px;
+            width: 900px;
+            background: red;
+            position: absolute;
+            top: 570px;
+            left: 35px;
+        }
+        .ipt_row3{
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            top: 590px;
+            left: 100px;
+            line-height: 40px;
+            font-weight: 700;
+        }
+        .img_6{
+            width: 350px;
+            height: 80px;
+            transform: rotate(-90deg);
+            position: absolute;
+            left: -135px;
+            top: 860px;
+        }
+        .arrows3{
+            width: 600px;
+            height: 100px;
+            display: inline-block;
+            position: absolute;
+            top: 730px;
+            left: -20px;
+        }
+        .img_7{
+            width: 400px;
+            height: 80px;
+            position: absolute;
+            right: 0;
+        }
+        .img_8{
+            width: 400px;
+            height: 80px;
+            position: absolute;
+            left: -20;
+        }
+        .klapan3{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 250px;
+            top: 0px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img3{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan3 span{
+            margin-left: -20px;
+        }
+        .klapan3 .klapan-ipt3{
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt3 input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .square2{
+            width: 250px;
+            height: 120px;
+            border: 4px solid red;
+            position: absolute;
+            top: 765px;
+            left: 140px;
+        }
+        .klapan4{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 230px;
+            top: 850px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img4{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan4 span{
+            margin-left: -20px;
+        }
+        .klapan4 .klapan-ipt4 {
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt4 input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .line6{
+            height: 5px;
+            width: 900px;
+            background: red;
+            position: absolute;
+            bottom: 50px;
+            left: 35px;
+        }
+        .ipt_row4{
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            bottom: -265px;
+            left: 100px;
+            line-height: 40px;
+            font-weight: 700;
+        }
+        .klapan5{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 650px;
+            top: 910px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img5{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan5 span{
+            margin-left: -20px;
+        }
+        .klapan6{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 650px;
+            top: 540px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img6{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan6 span{
+            margin-left: -20px;
+        }
+        .tri-text4{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            top: 545px;
+            left: 900px;
+        }
+        .tri-text5{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            top: 920px;
+            left: 900px;
+        }
+        .triangle4, .triangle5, .triangle6, .triangle7{
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+        }
+        .buttons3{
+            position: absolute;
+            top: 50px;
+            right: -150px;
+            width: 200px;
+            height: 150px;
+            font-weight: 700;
+        }
+        .buttons3 button{
+            width: 70px;
+            height: 30px;
+            text-transform: uppercase;
+        }
+        .buttons3 input{
+            width: 90px;
+            font-weight: 800;
+            direction: rtl;
+            margin-top: 5px;
+        }
+        .line7{
+            height: 5px;
+            width: 400px;
+            background: red;
+            position: absolute;
+            top: 145px;
+            left: 540px;
+        }
+        .tri-text6{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            top: 120px;
+            left: 900px;
+        }
+        .klapan7{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 800px;
+            top: 115px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img7{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan7 span{
+            margin-left: -20px;
+        }
+        .klapan7 .klapan-ipt7 {
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt7 input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .col-line2{
+            width: 5px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 145px;
+            left: 680px;
+        }
+        .line8{
+            height: 5px;
+            width: 260px;
+            background: red;
+            position: absolute;
+            top: 340px;
+            left: 680px;
+        }
+        .tri-text7{
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            top: 315px;
+            left: 900px;
+        }
+        .klapan8{
+            width: 70px;
+            height: 100px;
+            position: absolute;
+            left: 800px;
+            top: 310px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .klapan-img8{
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(128, 128, 128, 0.85);
+            text-align: left;
+            padding: 10px;
+            color: blue;
+            font-weight: 900;
+            margin: 0 auto;
+        }
+        .klapan8 span{
+            margin-left: -20px;
+        }
+        .klapan8 .klapan-ipt8 {
+            width: 70px;
+            position: absolute;
+            top: -28px;
+            left: 7px;
+        }
+        .klapan-ipt8 input{
+            width: 50px;
+            font-weight: 700;
+            direction: rtl;
+        }
+        .lightbox{
+            visibility: hidden;
+            display: table;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3;
+            font-size: 30px;
+        }
+        .lightbox-content{
+            position: relative;
+            text-align: center;
+            background: red;
+            width: 50%;
+            margin: 300px auto 0;
+            height: 500px;
+            padding: 80px;
+        }
+        .lightbox-content span{
+            font-size: 50px;
+            font-weight: 900;
+        }
+        .lightbox-content a{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bfp-control">
+        <p class="bfp-text">
+            bfp-control
+        </p>
+        <div class="cont">
+        <p class="bfp-group">
+            bfp-group
+        </p>
+        <p class="no-disc">
+            no-disc
+        </p>
+        <p class="ready">
+            ready
+        </p>
+        <select name="" id="">
+            <option value="Required">Required</option>
+            <option value="Selected">Selected</option>
+        </select>
+        </div>
+    </div>
+    <div class="status-table">
+        <table>
+            <tr>
+                <td>bfpa temp status</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr>
+            <tr>
+                <td>bfpa a vib status</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr>
+            <tr>
+                <td>bfpb temp status</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr><tr>
+                <td>bfpa b vib status</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr><tr>
+                <td>bfp a rotation</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr><tr>
+                <td>bfp b rotation</td>
+                <td><input type="text" readonly value="NORMAL"></td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <button>bfpa</button>
+            <button>bfpb</button>
+        </div>
+    </div>
+    <div class="cont1">
+    <div class="tri-text">
+    <p>HRSG#22 <br> Feedwater Drum</p>
+    <img class="triangle1" src="./img/triangle.png" alt="">
+    </div>
+    <div class="arrows">
+        <img class="img_1" src="./img/arrow.png" alt="">
+        <img class="img_2" src="./img/arrow.png" alt="">
+    </div>
+    <div class="line"></div>
+    <div class="line2"></div>
+    <div class="field1">
+        <p>22LAB01CP001</p>
+        <input type="text" readonly value="3.1"> mbar
+        <div class="gr_sqr">
+        </div>
+    </div>
+    <div class="field2">
+        <p>22LAB02CP001</p>
+        <input type="text" readonly value="38.9"> mbar
+        <div class="gr_sqr">
+        </div>
+    </div>
+    <div class="ipt_row">
+        <p>22LAB01CP002</p>
+        <input id="ipt-1" type="number" value="38.7"> barg
+        <p>22LAB01CT001</p>
+        <button  id="btn-1" onclick="pump1()"><span id="value1">165 °C</span></button> 
+        <p>22LAC01CT022</p>
+        <button  id="btn-2" onclick="pump2()"><span id="value2">147 °C</span></button>
+    </div>
+    <div class="ipt_row2">
+        <p>22LAB02CP002</p>
+        <input type="text" readonly value="9.21"> barg
+        <p>22LAB02CT001</p>
+        <input type="button" value="167.4"> °C
+        <p>22LAC02CT022</p>
+        <input type="button" value="164.1"> °C
+    </div>
+    <div class="nasos1">
+        <p>LEAD</p>
+        <div class="nasos-img">
+            A
+            <img style="position: absolute; top: 32px; left: 8px;" src="./img/pump.png" alt="" width="50" height="50">
+        </div>
+        <p>On</p>
+        <span>22LAC02AP00L</span>
+    </div>
+    <div class="nasos2">
+        <p>LAG 1</p>
+        <div class="nasos-img">
+            A
+            <img style="position: absolute; top: 32px; left: 8px;" src="./img/pump.png" alt="" width="50" height="50">
+        </div>
+        <p>On</p>
+        <span>22LAC01AP00L</span>
+    </div>
+    <div class="single-ipt">
+        <p>22LAB02CP003</p>
+        <input type="text" readonly value="121.8"> barg
+    </div>
+    </div>
+    <div class="cont2">
+        <div class="tri-text2">
+            <p>Feedwater System <br> Fill From CEP</p>
+            <img class="triangle2" src="./img/triangle.png" alt="">
+        </div>
+        <div class="tri-text3">
+            <p>To Sample Panel</p>
+            <img class="triangle3" src="./img/triangle.png" alt="">
+        </div>
+        <div class="line3"></div>
+        <div class="line4"></div>
+        <div class="buttons2">
+            <p>22LAB10CP001</p>
+            <button><p>AVG AB</p></button><br>
+            <input type="text" readonly value="121.4"> barg
+        </div>
+        <div class="square">
+
+        </div>
+        <div class="arrows2">
+            <img class="img_3" src="./img/arrow.png" alt="">
+            <img class="img_4" src="./img/arrow.png" alt="">
+            <div class="klapan1">
+                <div class="klapan-img">
+                    A
+                    <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+                </div>
+                <p class="klapan-ipt"><input type="text" readonly value="100">%</p>
+                <span>22LAC02AP00L</span>
+            </div>
+        </div>
+        <div class="klapan2">
+            <div class="klapan-img2">
+                A
+                <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+            </div>
+            <p class="klapan-ipt2"><input type="text" readonly value="0">%</p>
+            <span>22LAC02AP00L</span>
+        </div>
+        <div class="single-ipt2">
+            <p>22LAB01CP003</p>
+            <input type="text" readonly value="121.3"> barg
+        </div>
+       <div class="col-line">
+       </div>
+       <img class="img_5" src="./img/arrow.png" alt="">
+       <div class="line5"></div>
+       <div class="klapan6">
+        <div class="klapan-img6">
+            A
+            <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+        </div>
+        <p>OPEN</p>
+        <span>22HAD20AA002</span>
+       </div>
+       <div class="ipt_row3">
+        <input type="text" readonly value="46.6"> °C
+        <input type="text" readonly value="56.4"> °C
+        <input type="text" readonly value="52.4"> °C
+       </div>
+       <img class="img_6" src="./img/arrow.png" alt="">
+       <div class="square2">
+       </div>
+       <div class="arrows3">
+           <img class="img_7" src="./img/arrow.png" alt="">
+           <img class="img_8" src="./img/arrow.png" alt="">
+           <div class="klapan3">
+               <div class="klapan-img3">
+                   A
+                   <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+               </div>
+               <p class="klapan-ipt3"><input type="text" readonly value="100">%</p>
+               <span>22LAC02AP00L</span>
+           </div>
+       </div>
+       <div class="klapan4">
+           <div class="klapan-img4">
+               A
+               <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+           </div>
+           <p class="klapan-ipt4"><input type="text" readonly value="0">%</p>
+           <span>22LAC02AP00L</span>
+       </div>
+       <div class="line6"></div>
+       <div class="ipt_row4">
+        <input type="text" readonly value="77.1"> °C
+        <input type="text" readonly value="86.6"> °C
+        <input type="text" readonly value="81.8"> °C
+       </div>
+       <div class="klapan5">
+        <div class="klapan-img5">
+            A
+            <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+        </div>
+        <p>OPEN</p>
+        <span>22HAD20AA004</span>
+       </div>
+       <div class="tri-text4">     
+        <img class="triangle4" src="./img/triangle.png" alt="">
+        <p>Recirculation To <br> Feedwater Drum</p>
+       </div>
+       <div class="tri-text5">
+        <img class="triangle5" src="./img/triangle.png" alt="">
+        <p>Recirculation To <br> Feedwater Drum</p>
+       </div>
+       <div class="buttons3">
+        <p>22LAB70CF001</p>
+        <button><p>AVG AB</p></button><br>
+        <input type="text" readonly value="251.9"> t/hr
+       </div>
+       <div class="line7"></div>
+       <div class="line8"></div>
+       <div class="col-line2"></div>
+       <div class="tri-text6">
+        <img class="triangle6" src="./img/triangle.png" alt="">
+        <p>HRSG #22 <br> HP Economizer</p>
+       </div>
+       <div class="klapan7">
+        <div class="klapan-img7">
+            A B
+            <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+        </div>
+        <p class="klapan-ipt7"><input type="text" readonly value="35">%</p>
+        <span>22LAB10AA101</span>
+       </div>
+       <div class="tri-text7">
+        <img class="triangle7" src="./img/triangle.png" alt="">
+        <p>HRSG #22 <br> HP Superheater <br> Attemperator Spray</p>
+       </div>
+       <div class="klapan8">
+        <div class="klapan-img8">
+            A
+            <img style="position: absolute; top: 11px; left: 10px;" src="./img/valve.png" alt="" width="50" height="50">
+        </div>
+        <p class="klapan-ipt8"><input type="text" readonly value="100">%</p>
+        <span>22LAB10AA001</span>
+       </div>
+    </div>
+    <div class="lightbox" id="ex">
+        <div class="lightbox-content">
+            <a href="pump.html"><img src="./img/delete.png" alt="" width="70" height="70"></a>
+            <h1>CRITICAL TEMPERATURE!!!</h1><br>
+            <span id="value3"></span>
+        </div>
+    </div>
+    <script> 
+        function pump1(){
+            var ipt1 = document.getElementById('ipt-1').value;
+            var btn1 = document.getElementById('btn-1');
+            var btn1_value = document.getElementById('value1');
+            var btn2 = document.getElementById('btn-2');
+            var btn2_value = document.getElementById('btn-2').value;
+            var lightbox = document.getElementById('ex');
+            var temp_value = document.getElementById('value3');
+            if(ipt1 === "" || ipt1 === " "){
+                var audio1 = new Audio();
+                audio1.src = "./audio/error.mp3";
+                audio1.play();
+                alert("HEMME MEYDANCALARY DOLDURYN!!!");
+                return false;
+            }
+            else{
+                var x = Math.random()*100 + 35;
+                x = (x).toFixed(2);
+                btn1_value.innerHTML = x + ' ' + '°C';
+                var audio = new Audio();
+                audio.src = "./audio/1.mp3";
+                    if(x < 45){
+                        btn1_value.style.color = 'red';
+                        lightbox.style.visibility = 'visible';
+                        temp_value.innerHTML = x + ' ' + '°C';
+                        audio.play();
+                    }
+                    else{
+                        btn1_value.style.color = 'black';
+                    }
+            }
+        }
+        function pump2(){
+            var ipt1 = document.getElementById('ipt-1').value;
+            var btn1 = document.getElementById('btn-1');
+            var btn1_value = document.getElementById('value1');
+            var btn2 = document.getElementById('btn-2');
+            var btn2_value = document.getElementById('value2');
+            var lightbox = document.getElementById('ex');
+            var temp_value = document.getElementById('value3');
+            if(ipt1 === "" || ipt1 === " "){
+                var audio1 = new Audio();
+                audio1.src = "./audio/error.mp3";
+                audio1.play();
+                alert("HEMME MEYDANCALARY DOLDURYN!!!");
+                return false;
+            }
+            else{
+                var x = Math.random()*100 + 35;
+                x = (x).toFixed(2);
+                btn2_value.innerHTML = x + ' ' + '°C';
+                var audio = new Audio();
+                audio.src = "./audio/1.mp3";
+                    if(x < 45){
+                        btn2_value.style.color = 'red';
+                        lightbox.style.visibility = 'visible';
+                        temp_value.innerHTML = x + ' ' + '°C';
+                        audio.play();
+                    }
+                    else{
+                        btn2_value.style.color = 'black';
+                    }
+            }
+        }
+    </script>
+</body>
+</html>
